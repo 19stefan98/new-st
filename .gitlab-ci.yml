@@ -23,8 +23,8 @@ test:
     - apk add --update openssh-client bash
     - mkdir -p "$ALLURE_RES"
   script:
-    - docker stop tests || true && docker rm tests || true
-    - docker run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER=$ALLURE_FOLDER --name tests 19stefan98/tests:latest
+    - docker stop tests_pom || true && docker rm tests_pom || true
+    - docker run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER=$ALLURE_FOLDER --name tests_pom 19stefan98/tests:latest
   after_script:
     - eval $(ssh-agent -s)
     - bash -c 'ssh-add <(echo "$SSH_RUNNER_KEY")'
