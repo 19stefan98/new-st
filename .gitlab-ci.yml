@@ -31,7 +31,7 @@ test:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh-keyscan lmx@10.0.0.42
-    - docker cp tests:/$VERSION .
+    - docker cp tests_pom:/$VERSION .
     - ls "$ALLURE_RES"
     - scp -r "$ALLURE_RES" lmx@10.0.0.42:~/
   artifacts:
