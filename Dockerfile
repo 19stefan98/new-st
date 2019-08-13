@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 
 ARG VENV_DIR=/venv
 ARG PIP_EXEC=$VENV_DIR/bin/pip
-
+RUN ls
 RUN apt-get update && apt-get install -y \
     python3 python3-pip \
     libgconf2-4 libnss3-1d libxss1 \
