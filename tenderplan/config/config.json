@@ -1,0 +1,11 @@
+{
+  "url": "https://dev.tenderplan3.lmx.su/",
+  "login": "st-mitro@mail.ru",
+  "password": "rootroot",
+
+  "chrome":
+  {
+    "args": ["--headless", "--disable-gpu","--window-size=1920,1080", "--no-sandbox", "start-maximized", "disable-infobars", "--disable-extensions"]
+  }
+
+}

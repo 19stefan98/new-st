@@ -1,0 +1,6 @@
+pytest==4.5.0
+allure-pytest==2.6.3
+selenium==3.141.0
+pytest-xdist==1.28.0
+help-selen==10.0.1
+chromedriver-binary==76.0.3809.68.0
