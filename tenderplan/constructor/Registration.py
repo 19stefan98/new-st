@@ -16,6 +16,6 @@ class Registration(MainPage):
         self.phone(Data.phone)
         self.password(Data.password)
         self.button_reg()
-        time.sleep(5)
+        time.sleep(8)
         self.result = PersonalCabinet(self.driver)
         assert "Добро пожаловать в Тендерплан" in self.result.result_reg()
