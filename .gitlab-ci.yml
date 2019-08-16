@@ -12,7 +12,7 @@ build:
 
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -f docker/chrome/Dockerfile -t run .
+    - docker-compose build
   tags:
     - docker-build
   only:
