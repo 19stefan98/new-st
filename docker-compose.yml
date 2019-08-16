@@ -1,11 +1,5 @@
 version: '3'
 
-volumes:
-  test-chrome:
-    driver: local
-  test-firefox:
-    driver: local
-
 services:
 
    test-chrome:
