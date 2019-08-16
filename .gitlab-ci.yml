@@ -24,6 +24,7 @@ test:
     ALLURE_RES_FIREFOX: /builds/$CI_PROJECT_PATH/$ALLURE_FOLDER_FIREFOX
   before_script:
     - apk add --update openssh-client bash
+    - apk add --no-cache --quiet py-pip
     - pip install --quiet docker-compose~=1.23.0
     - mkdir -p "ALLURE_RES_CHROME"
     - mkdir -p "ALLURE_RES_FIREFOX"
