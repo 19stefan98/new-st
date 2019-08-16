@@ -24,9 +24,11 @@ test:
     ALLURE_RES_FIREFOX: /builds/$CI_PROJECT_PATH/$ALLURE_FOLDER_FIREFOX
   before_script:
     - apk add --update openssh-client bash
+    - pip install --quiet docker-compose~=1.23.0
     - mkdir -p "ALLURE_RES_CHROME"
     - mkdir -p "ALLURE_RES_FIREFOX"
   script:
+    - docker-compose down
     - docker-compose run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER_CHROME=$ALLURE_FOLDER_CHROME -e ALLURE_FOLDER_FIREFOX=$ALLURE_FOLDER_FIREFOX
   after_script:
     - eval $(ssh-agent -s)
