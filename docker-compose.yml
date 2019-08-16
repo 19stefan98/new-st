@@ -1,5 +1,9 @@
 version: '3'
 
+volumes:
+  allure:
+    driver: local
+
 services:
 
    test-chrome:
