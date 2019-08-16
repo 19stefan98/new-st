@@ -3,6 +3,9 @@ version: '3'
 services:
 
    test-chrome:
+    environment:
+      - TEST_HOST
+      - ALLURE_FOLDER_CHROME
     build:
       context: .
       dockerfile: docker/chrome/Dockerfile
@@ -11,6 +14,9 @@ services:
        - ./report-chrome:/result
 
    test-firefox:
+    environment:
+     - TEST_HOST
+     - ALLURE_FOLDER_CHROME
     build:
       context: .
       dockerfile: docker/firefox/Dockerfile
