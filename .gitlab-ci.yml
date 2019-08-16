@@ -8,6 +8,7 @@ build:
   stage: build
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    - docker-compose version
     - docker-compose build
   tags:
     - docker-build
