@@ -27,7 +27,7 @@ ENV APP_HOME /usr/src/app
 WORKDIR $APP_HOME
 COPY . $APP_HOME
 
-ENV ALLURE_FOLDER_CHROME /report-chrome
+ENV ALLURE_FOLDER_CHROME /result
 ENV TEST_HOST https://dev.tenderplan3.lmx.su/
 ENV BROWSER chrome
 

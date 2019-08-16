@@ -43,7 +43,7 @@ ENV APP_HOME /usr/src/app
 WORKDIR $APP_HOME
 COPY . $APP_HOME
 
-ENV ALLURE_FOLDER_FIREFOX /report-firefox
+ENV ALLURE_FOLDER_FIREFOX /result
 ENV TEST_HOST https://dev.tenderplan3.lmx.su/
 ENV BROWSER firefox
 
