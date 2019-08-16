@@ -1,7 +1,9 @@
 version: '3'
 
 volumes:
-  allure:
+  test-chrome:
+    driver: local
+  test-firefox:
     driver: local
 
 services:
@@ -12,7 +14,7 @@ services:
       dockerfile: docker/chrome/Dockerfile
     image: 19stefan98/tests-chrome
     volumes:
-       - ./report-chrome:/result
+       - ./report-chrome:/report-chrome
 
    test-firefox:
     build:
@@ -20,4 +22,4 @@ services:
       dockerfile: docker/firefox/Dockerfile
     image: 19stefan98/tests-firefox
     volumes:
-      - ./report-firefox:/result
+      - ./report-firefox:/report-firefox
