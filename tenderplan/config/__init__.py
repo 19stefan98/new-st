@@ -7,12 +7,11 @@ class Config:
         self.root_dir = '%s/../..' % os.path.dirname(os.path.abspath(__file__))
         file_config = self._read_config_file()
 
+        self.args = file_config["chrome"]["args"]
         self.url = os.environ.get("TEST_HOST") or file_config["url"]
         #         # if not self.url:
         #     raise ValueError("Couldn't get ENV_HOST variable")
-        self.login = file_config["login"]
-        self.password = file_config["password"]
-        self.args = file_config["chrome"]["args"]
+        self.browser = os.environ.get("BROWSER")
 
     def _read_config_file(self):
         file_path = '%s/tenderplan/config/config.json' % self.root_dir

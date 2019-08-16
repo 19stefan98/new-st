@@ -8,8 +8,7 @@ build:
   stage: build
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t 19stefan98/tests:latest .
-    - docker push 19stefan98/tests:latest
+    - docker-compose build
   tags:
     - docker-build
   only:
@@ -18,25 +17,29 @@ build:
 test:
   stage: test
   variables:
-    ALLURE_RES: /builds/$CI_PROJECT_PATH/$ALLURE_FOLDER
+    ALLURE_RES_CHROME: /builds/$CI_PROJECT_PATH/$ALLURE_FOLDER_CHROME
+    ALLURE_RES_FIREFOX: /builds/$CI_PROJECT_PATH/$ALLURE_FOLDER_FIREFOX
   before_script:
     - apk add --update openssh-client bash
-    - mkdir -p "$ALLURE_RES"
+    - mkdir -p "ALLURE_RES_CHROME"
+    - mkdir -p "ALLURE_RES_FIREFOX"
   script:
-    - docker stop tests_pom || true && docker rm tests_pom || true
-    - docker run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER=$ALLURE_FOLDER --name tests_pom 19stefan98/tests:latest
+    - docker-compose down
+    - docker-compose run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER_CHROME=$ALLURE_FOLDER_CHROME -e ALLURE_FOLDER_FIREFOX=$ALLURE_FOLDER_FIREFOX
   after_script:
     - eval $(ssh-agent -s)
     - bash -c 'ssh-add <(echo "$SSH_RUNNER_KEY")'
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh-keyscan lmx@10.0.0.42
-    - docker cp tests_pom:/$VERSION .
-    - ls "$ALLURE_RES"
-    - scp -r "$ALLURE_RES" lmx@10.0.0.42:~/
+#    - docker cp tests_pom:/$VERSION .
+    - ls "$ALLURE_RES_CHROME"
+    - scp -r "$ALLURE_RES_CHROME" lmx@10.0.0.42:~/
+    - scp -r "$ALLURE_RES_FIREFOX" lmx@10.0.0.42:~/
   artifacts:
     paths:
-      - $ALLURE_FOLDER
+      - $ALLURE_FOLDER_CHROME
+      - $ALLURE_FOLDER_FIREFOX
     expire_in: 1 days
   tags:
     - docker-build

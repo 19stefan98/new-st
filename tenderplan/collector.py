@@ -1,11 +1,12 @@
 import pytest
 import allure
 
-from tenderplan.constructor.Authorization import Authorization
-from tenderplan.constructor.Registration import Registration
+from tenderplan.test.Authorization import Authorization
+from tenderplan.test.Registration import Registration
+from tenderplan.config import config
 
 
-@pytest.mark.usefixtures('chrome_driver')
+@pytest.mark.usefixtures(config.browser)
 class TestCollector:
     @allure.feature('Регистрация на главной странице')
     def test_registration(self):

@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 
 ARG VENV_DIR=/venv
 ARG PIP_EXEC=$VENV_DIR/bin/pip
-RUN ls
+
 RUN apt-get update && apt-get install -y \
     python3 python3-pip \
     libgconf2-4 libnss3-1d libxss1 \
@@ -27,9 +27,10 @@ ENV APP_HOME /usr/src/app
 WORKDIR $APP_HOME
 COPY . $APP_HOME
 
-ENV ALLURE_FOLDER /result
+ENV ALLURE_FOLDER_CHROME /report-chrome
 ENV TEST_HOST https://dev.tenderplan3.lmx.su/
+ENV BROWSER chrome
 
-VOLUME $ALLURE_FOLDER
+VOLUME $ALLURE_FOLDER_CHROME
 
-CMD /venv/bin/pytest -v -n2 run.py --alluredir=/$ALLURE_FOLDER
+CMD /venv/bin/pytest -v -n2 run.py --alluredir=/$ALLURE_FOLDER_CHROME

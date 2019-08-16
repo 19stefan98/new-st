@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+   test-chrome:
+    build:
+      context: .
+      dockerfile: docker/chrome/Dockerfile
+    image: 19stefan98/tests-chrome
+    volumes:
+       - ./report-chrome:/result
+
+   test-firefox:
+    build:
+      context: .
+      dockerfile: docker/firefox/Dockerfile
+    image: 19stefan98/tests-firefox
+    volumes:
+      - ./report-firefox:/result
