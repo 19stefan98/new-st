@@ -6,6 +6,10 @@ stages:
 
 build:
   stage: build
+  before_script:
+    - apk add --no-cache py-pip
+    - pip install docker-compose
+
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
     - docker build -f docker/chrome/Dockerfile -t run .
