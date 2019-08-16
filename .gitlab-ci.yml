@@ -8,7 +8,7 @@ build:
   stage: build
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker-compose build
+    - docker build -f docker/chrome/Dockerfile -t run .
   tags:
     - docker-build
   only:
