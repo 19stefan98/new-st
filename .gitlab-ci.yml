@@ -27,7 +27,6 @@ test:
     - mkdir -p "ALLURE_RES_CHROME"
     - mkdir -p "ALLURE_RES_FIREFOX"
   script:
-    - docker-compose down
     - docker-compose run -e TEST_HOST=$TEST_HOST -e ALLURE_FOLDER_CHROME=$ALLURE_FOLDER_CHROME -e ALLURE_FOLDER_FIREFOX=$ALLURE_FOLDER_FIREFOX
   after_script:
     - eval $(ssh-agent -s)
